@@ -16,9 +16,8 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@hackerrank-profile/hackerrank-api": [
-        "libs/hackerrank-api/src/index.ts"
-      ],
+      "@hackerrank-profile/hackerrank-api": ["libs/hackerrank-api/src/index.ts"],
+      "@hackerrank-profile/hackerrank-api/*": ["libs/hackerrank-api/src/*"],
       "@hackerrank-profile/shared/*": ["libs/shared/src/*"]
     }
   },

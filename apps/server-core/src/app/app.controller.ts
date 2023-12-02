@@ -1,9 +1,10 @@
-import { Controller, Get, Param, Req, Res } from "@nestjs/common"
+import { Body, Controller, Get, Param, Post, Req, Res } from "@nestjs/common"
 import { Response, Request } from "express"
 
 import { getCerts, getProfile } from "@hackerrank-profile/hackerrank-api"
 
 import { AppService } from "./app.service"
+import { login } from "../services/hackerrank.service"
 
 @Controller()
 export class AppController {
@@ -12,6 +13,11 @@ export class AppController {
   @Get()
   getData() {
     return this.appService.getData()
+  }
+
+  @Post("login")
+  login(@Body() payload: { username: string; password: string }) {
+    return login(payload.username, payload.password)
   }
 
   @Get(":username")
