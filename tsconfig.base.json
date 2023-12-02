@@ -9,12 +9,16 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ESNext",
-    "module": "esnext",
+    "module": "ESNext",
     "lib": ["ESNext", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
+      "@hackerrank-profile/hackerrank-api": [
+        "libs/hackerrank-api/src/index.ts"
+      ],
       "@hackerrank-profile/shared/*": ["libs/shared/src/*"]
     }
   },
