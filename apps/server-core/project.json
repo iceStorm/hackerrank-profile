@@ -1,0 +1,50 @@
+{
+  "name": "server-core",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/server-core/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/server-core",
+        "main": "apps/server-core/src/main.ts",
+        "tsConfig": "apps/server-core/tsconfig.app.json",
+        "assets": ["apps/server-core/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/server-core/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "server-core:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "server-core:build:development"
+        },
+        "production": {
+          "buildTarget": "server-core:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/server-core/**/*.ts"]
+      }
+    }
+  },
+  "tags": ["app"]
+}
