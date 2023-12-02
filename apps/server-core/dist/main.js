@@ -365,6 +365,9 @@ AppController = (0,external_tslib_namespaceObject.__decorate)([
 
 
 
+const config = {
+    runtime: "edge",
+};
 let AppModule = class AppModule {
 };
 AppModule = (0,external_tslib_namespaceObject.__decorate)([

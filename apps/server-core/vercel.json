@@ -4,7 +4,7 @@
     {
       "src": "dist/main.js",
       "use": "@vercel/node",
-      "config": { "includeFiles": ["dist/**"] }
+      "config": { "includeFiles": ["dist/**"], "maxDuration": 300, "runtime": "edge" }
     }
   ],
   "routes": [
@@ -13,10 +13,5 @@
       "dest": "dist/main.js",
       "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
     }
-  ],
-  "functions": {
-    "apps/server-core/**/*": {
-      "maxDuration": 300
-    }
-  }
+  ]
 }
