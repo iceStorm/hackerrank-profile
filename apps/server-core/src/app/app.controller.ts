@@ -1,4 +1,5 @@
-import { Controller, Get, Param } from "@nestjs/common"
+import { Controller, Get, Param, Req, Res } from "@nestjs/common"
+import { Response, Request } from "express"
 
 import { getCerts, getProfile } from "@hackerrank-profile/hackerrank-api"
 
@@ -15,6 +16,26 @@ export class AppController {
 
   @Get(":username")
   getUserProfile(@Param("username") username: string) {
-    return Promise.all([getProfile(username), getCerts(username)])
+    return getProfile(username)
+  }
+
+  @Get(":username/certificates")
+  getUserAllCertificate(@Param("username") username: string) {
+    return getCerts(username)
+  }
+
+  @Get(":username/certificates/:cert_id?/download")
+  downloadUserSingleCertificate(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Param("username") username: string,
+    @Param("cert_id") certId?: string,
+  ) {
+    return this.appService.generateAndDownloadCertificates(username, req, res, certId)
+  }
+
+  @Get(":username/certificates/:cert_id")
+  getUserSingleCertificate(@Param("username") username: string, @Param("cert_id") certId: string) {
+    return this.appService.getUserSingleCertificate(username, certId)
   }
 }
