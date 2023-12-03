@@ -1,10 +1,6 @@
-import { Body, Controller, Get, Param, Post, Req, Res } from "@nestjs/common"
-import { Response, Request } from "express"
-
-import { getCerts, getProfile } from "@hackerrank-profile/hackerrank-api"
+import { Controller, Get } from "@nestjs/common"
 
 import { AppService } from "./app.service"
-import { login } from "../services/hackerrank.service"
 
 @Controller()
 export class AppController {
@@ -15,33 +11,43 @@ export class AppController {
     return this.appService.getData()
   }
 
-  @Post("login")
-  login(@Body() payload: { username: string; password: string }) {
-    return login(payload.username, payload.password)
-  }
+  // @TsRestHandler(appRouter.login)
+  // async login() {
+  //   return tsRestHandler(appRouter.login, async ({ body }) => {
+  //     return { status: 200 as const, body: await login(body.login, body.password) }
+  //   })
+  // }
 
-  @Get(":username")
-  getUserProfile(@Param("username") username: string) {
-    return getProfile(username)
-  }
+  // @TsRestHandler(appRouter.getProfile)
+  // async getProfile() {
+  //   return tsRestHandler(appRouter.getProfile, async ({ params: { username } }) => {
+  //     return { status: 200 as const, body: await getProfile(username) }
+  //   })
+  // }
 
-  @Get(":username/certificates")
-  getUserAllCertificate(@Param("username") username: string) {
-    return getCerts(username)
-  }
+  // @TsRestHandler(appRouter.getAllCertificates)
+  // async getAllCertificates() {
+  //   return tsRestHandler(appRouter.getAllCertificates, async ({ params: { username } }) => {
+  //     return { status: 200 as const, body: await getCerts(username) }
+  //   })
+  // }
 
-  @Get(":username/certificates/:cert_id?/download")
-  downloadUserSingleCertificate(
-    @Req() req: Request,
-    @Res() res: Response,
-    @Param("username") username: string,
-    @Param("cert_id") certId?: string,
-  ) {
-    return this.appService.generateAndDownloadCertificates(username, req, res, certId)
-  }
+  // @TsRestHandler(appRouter.downloadCertificates)
+  // async downloadCertificates(@Req() req: Request, @Res() res: Response) {
+  //   return tsRestHandler(appRouter.downloadCertificates, async ({ params: { username, certificate_id } }) => {
+  //     const certs = await this.appService.generateAndDownloadCertificates(username, req, res, certificate_id)
 
-  @Get(":username/certificates/:cert_id")
-  getUserSingleCertificate(@Param("username") username: string, @Param("cert_id") certId: string) {
-    return this.appService.getUserSingleCertificate(username, certId)
-  }
+  //     return {
+  //       status: 200 as const,
+  //       body: certs,
+  //     }
+  //   })
+  // }
+
+  // @TsRestHandler(appRouter.getSingleCertificate)
+  // async getSingleCertificate() {
+  //   return tsRestHandler(appRouter.getSingleCertificate, async ({ params: { username, certificate_id } }) => {
+  //     return { status: 200 as const, body: await this.appService.getUserSingleCertificate(username, certificate_id) }
+  //   })
+  // }
 }

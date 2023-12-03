@@ -1,0 +1,26 @@
+{
+  "name": "app",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/contracts/app/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/contracts/app",
+        "main": "libs/contracts/app/src/index.ts",
+        "tsConfig": "libs/contracts/app/tsconfig.lib.json",
+        "assets": []
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/contracts/app/**/*.ts", "libs/contracts/app/package.json"]
+      }
+    }
+  },
+  "tags": ["lib"]
+}

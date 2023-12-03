@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strict": true,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
@@ -16,8 +17,10 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
+      "@hackerrank-profile/contracts": ["libs/contracts/index.ts"],
       "@hackerrank-profile/hackerrank-api": ["libs/hackerrank-api/src/index.ts"],
       "@hackerrank-profile/hackerrank-api/*": ["libs/hackerrank-api/src/*"],
+      "@hackerrank-profile/server-core/contracts": ["apps/server-core/src/contracts/app.contract.ts"],
       "@hackerrank-profile/shared/*": ["libs/shared/src/*"]
     }
   },

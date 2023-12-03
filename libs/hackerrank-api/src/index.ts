@@ -12,6 +12,14 @@ export async function getCerts(username: string) {
   return response.data.data
 }
 
+export async function getCertById(certId: string) {
+  const response = await httpClient.get<{ data: Cert }>(
+    `https://www.hackerrank.com/community/v1/test_results/${certId}`,
+  )
+
+  return response.data.data
+}
+
 export async function getProfile(username: string) {
   const { data } = await httpClient.get<{ model: Profile }>(
     `https://www.hackerrank.com/rest/contests/master/hackers/${username}/profile`,
